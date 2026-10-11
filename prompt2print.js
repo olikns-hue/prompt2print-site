@@ -156,8 +156,8 @@ const TSHIRT_GALLERY=["https://static.tildacdn.com/tild3539-3034-4836-b434-31333
 const COLORING_GALLERY=["https://static.tildacdn.com/tild6231-6439-4463-b131-333565346531/a3ad88b0-8d7f-4b52-8.png", "https://static.tildacdn.com/tild3063-3239-4433-b332-336633643734/a639893c-fdff-4314-b.png", "https://static.tildacdn.com/tild3962-6333-4536-b362-363364353632/9ed7665a-0d2f-43b0-8.png", "https://static.tildacdn.com/tild6234-6461-4532-a239-646463393136/34eabe1d-78d8-4e43-a.png", "https://static.tildacdn.com/tild3736-6433-4337-b936-336166373764/4ccba56d-e388-4d26-a.png"];
 
 const SWEATSHIRT_GALLERY=["https://static.tildacdn.com/tild3463-3263-4435-b438-646261656163/_ChatGPT_5__2026__16.png", "https://static.tildacdn.com/tild3162-6161-4432-b932-663433633563/_ChatGPT_5__2026__16.png", "https://static.tildacdn.com/tild3566-3066-4665-b533-396232353839/_ChatGPT_5__2026__16.png", "https://static.tildacdn.com/tild6136-3861-4666-b134-306337653566/_ChatGPT_5__2026__16.png", "https://static.tildacdn.com/tild6639-3838-4630-a630-346532303737/_ChatGPT_5__2026__16.png"];
-const MUG_GALLERY=["https://static.tildacdn.com/tild3231-3766-4333-b739-336438316163/_ChatGPT_7__2026__20.png", "https://static.tildacdn.com/tild3134-3964-4266-b135-376364653365/_ChatGPT_7__2026__20.png", "https://static.tildacdn.com/tild6261-3865-4638-b135-313834623638/_ChatGPT_7__2026__20.png"];
-const BOTTLE_GALLERY=["https://static.tildacdn.com/tild6437-3230-4663-b066-343433633938/_ChatGPT_11__2026__1.png", "https://static.tildacdn.com/tild3838-6235-4234-b532-323661653537/_ChatGPT_11__2026__1.png", "https://static.tildacdn.com/tild3638-3861-4239-b230-353065616234/_ChatGPT_11__2026__1.png"];
+const MUG_GALLERY=["https://static.tildacdn.com/tild6261-3865-4638-b135-313834623638/_ChatGPT_7__2026__20.png", "https://static.tildacdn.com/tild3231-3766-4333-b739-336438316163/_ChatGPT_7__2026__20.png", "https://static.tildacdn.com/tild3134-3964-4266-b135-376364653365/_ChatGPT_7__2026__20.png"];
+const BOTTLE_GALLERY=["https://static.tildacdn.com/tild3638-3861-4239-b230-353065616234/_ChatGPT_11__2026__1.png", "https://static.tildacdn.com/tild6437-3230-4663-b066-343433633938/_ChatGPT_11__2026__1.png", "https://static.tildacdn.com/tild3838-6235-4234-b532-323661653537/_ChatGPT_11__2026__1.png"];
 function productGalleryCard(prefix,images,altText){
  return `<div class="product-title-card" style="padding:0;background:#fff;display:block">
    <div style="position:relative;background:#fff;border-radius:20px;overflow:hidden">
@@ -620,13 +620,13 @@ subtree:true
 
 (function(){
 if(window.__P2P_HELP_WIDGET__)return;window.__P2P_HELP_WIDGET__=1;
-var PHONE='79171040338',TELEGRAM='olikns';
+var TELEGRAM='olikns';
 var names={tshirt:'футболку',sweatshirt:'толстовку',mug:'кружку',bottle:'бутылку 600 мл',coloring:'раскраску из фото',bag:'шоппер',socks:'носки',dtf:'DTF-термонаклейку'};
 function cur(){var m=(location.hash||'').match(/#(?:product|studio|order)\/([^/?#]+)/);return m&&names[m[1]]?names[m[1]]:'изделие с индивидуальным принтом'}
 function msg(){return'Здравствуйте! Я на сайте Prompt2Print и хочу заказать '+cur()+'. Не хочу собирать макет в конструкторе. Поможете сделать макет вместе?'}
-var o=document.getElementById('p2p-help-open'),mo=document.getElementById('p2p-help-modal'),ba=document.getElementById('p2p-help-backdrop'),cl=document.getElementById('p2p-help-close'),pb=document.getElementById('p2p-help-product'),tg=document.getElementById('p2p-help-tg'),wa=document.getElementById('p2p-help-wa'),mx=document.getElementById('p2p-help-max'),st=document.getElementById('p2p-help-status');
+var o=document.getElementById('p2p-help-open'),mo=document.getElementById('p2p-help-modal'),ba=document.getElementById('p2p-help-backdrop'),cl=document.getElementById('p2p-help-close'),pb=document.getElementById('p2p-help-product'),tg=document.getElementById('p2p-help-tg'),mx=document.getElementById('p2p-help-max'),st=document.getElementById('p2p-help-status');
 if(!o)return;
-function refresh(){pb.innerHTML='Сейчас интересует: <b>'+cur()+'</b>';wa.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg());tg.href='https://t.me/'+TELEGRAM}
+function refresh(){pb.innerHTML='Сейчас интересует: <b>'+cur()+'</b>';tg.href='https://t.me/'+TELEGRAM}
 function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity=0;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();return Promise.resolve()}
 o.onclick=function(){refresh();mo.hidden=false;ba.hidden=false};cl.onclick=ba.onclick=function(){mo.hidden=true;ba.hidden=true};
 tg.onclick=function(){copy(msg()).then(function(){st.textContent='Готовое сообщение скопировано. Вставь его в Telegram.'})};

@@ -19,7 +19,7 @@ const products=[
 {id:'bottle',name:'Бутылки',single:'Бутылка с твоим принтом',desc:'Своя бутылка для прогулок, тренировок и маленьких приключений.',price:'550 ₽',specs:[['Объём','600 мл'],['Дизайн','Индивидуальный']],text:'Добавим имя, рисунок или логотип. Размещение принта и доступную основу покажем при согласовании макета.'},
 {id:'socks',name:'Носки',single:'Носки с твоим принтом',desc:'Маленький подарок с большим характером. Для тех, у кого всё есть.',price:'390 ₽',specs:[['Цвет','Белый'],['Длина','Средняя'],['Размеры','35–38 / 41–44'],['Принт','На заказ']],text:'Любимая мордочка, короткая фраза или маленький рисунок. Подберём размещение под форму носка и согласуем макет.'},
 {id:'sweatshirt',name:'Толстовки',single:'Толстовка с твоим принтом',desc:'Белая или чёрная толстовка с твоим дизайном. Для себя, подарка или команды.',price:'2 900 ₽',specs:[['Цвет','Белый / чёрный'],['Размеры','46–58'],['Печать','Белая — сублимация · Чёрная — DTF'],['Принт','Спереди / сзади / с обеих сторон']],text:'На белых толстовках используем сублимацию, на чёрных — DTF. Можно сделать принт спереди, сзади или с обеих сторон. Размер, цвет и расположение рисунка согласуем до печати.'},
-{id:'dtf',name:'DTF-наклейки',single:'DTF-термонаклейка',desc:'Твой рисунок для переноса на одежду. Подготовим макет для печати.',price:'По макету',specs:[['Метод','DTF'],['Максимальный макет','30 × 35 см']],text:'Напечатаем рисунок на плёнке для термопереноса. Стоимость зависит от размера и количества. Проверим тонкие линии и объясним, как перенести принт на вещь.'},
+{id:'dtf',name:'DTF-термонаклейки',single:'DTF-термонаклейки',desc:'Ваш принт, логотип, надпись или картинка для переноса на ткань.',price:'от 750 ₽',specs:[['Печать','DTF на термотрансферной плёнке'],['Рулон','Ширина печати 27,7 см'],['Заказ','От одного принта до рулонной печати']],text:'Печатаем готовые термотрансферы для переноса на одежду и текстиль. Можно заказать один лист, несколько принтов или рулонную печать. Если размер или тираж нестандартный, стоимость рассчитаем вручную.'},
 {id:'bag',name:'Шопперы',single:'Шоппер с твоим принтом',desc:'Носи с собой любимую фразу, рисунок или логотип.',price:'По запросу',specs:[['Основа и цвет','Уточняем при заказе'],['Дизайн','Индивидуальный']],text:'Обсудим основу, размер принта и количество. Итоговую стоимость подтвердим после выбора шоппера и согласования макета.'},
 {id:'coloring',name:'Раскраска из фото',single:'Персональная раскраска из ваших фотографий',desc:'10 любимых фотографий превратятся в настоящую персональную раскраску.',price:'от 300 ₽',specs:[['Страницы','10 раскрасок А4'],['Обложка','Цветная персональная'],['Печатная версия','400 ₽'],['Электронный PDF','300 ₽'],['Книга + PDF','450 ₽']],text:'Пришли 10 фотографий, а мы превратим каждую в отдельную страницу-раскраску. Можно заказать готовую книжку с цветной обложкой и переплётом, электронный PDF для самостоятельной печати или оба варианта вместе.'}
 ];
@@ -172,6 +172,58 @@ function productGalleryCard(prefix,images,altText){
  </div>`;
 }
 
+function dtfDetails(){
+return `
+<div class="info-grid" style="margin:28px 0 22px">
+  <div class="info-box">
+    <h3>Розничные заказы</h3>
+    <div class="specs">
+      <div><span>21 × 15 см</span>750 ₽</div>
+      <div><span>21 × 30 см</span>850 ₽</div>
+      <div><span>27,7 × 42 см</span>1000 ₽</div>
+      <div><span>27,7 × 100 см</span>1400 ₽</div>
+    </div>
+    <p class="micro">Печать на плёнке. Если нужен другой размер, напишите нам, стоимость рассчитаем вручную.</p>
+  </div>
+  <div class="info-box">
+    <h3>Рулонная печать</h3>
+    <p class="micro">Ширина печати 27,7 см</p>
+    <div class="specs">
+      <div><span>3–5 м</span>1300 ₽/м</div>
+      <div><span>5–10 м</span>900 ₽/м</div>
+      <div><span>10–20 м</span>800 ₽/м</div>
+      <div><span>20–50 м</span>700 ₽/м</div>
+      <div><span>50–100 м</span>600 ₽/м</div>
+    </div>
+  </div>
+</div>
+<div class="info-grid" style="margin:0 0 22px">
+  <div class="info-box">
+    <h3>Дополнительные услуги</h3>
+    <div class="specs">
+      <div><span>Перенос принта на изделие</span>50 ₽/шт.</div>
+      <div><span>Подготовка макета к печати</span>от 500 ₽</div>
+    </div>
+    <p class="micro">Проверим качество, при необходимости удалим фон, подрежем изображение и подготовим файл к DTF-печати.</p>
+  </div>
+  <div class="info-box">
+    <h3>Как подготовить файл</h3>
+    <ul>
+      <li>Лучше всего PNG на прозрачном фоне.</li>
+      <li>Присылайте изображение в максимально хорошем качестве.</li>
+      <li>Укажите желаемый размер печати.</li>
+      <li>Очень тонкие линии и мелкие детали могут потеряться при печати.</li>
+    </ul>
+  </div>
+</div>
+<div class="notice"><b>Есть готовый макет?</b><br>Прикрепите его к заявке. Если макета нет, расскажите идею, пришлите фото или текст, и мы поможем собрать вариант для согласования.</div>
+<div class="actions">
+  <a class="btn yellow" href="#order/dtf">Загрузить макет ↗</a>
+  <button class="btn light" id="dtf-help-open" type="button">Нужна помощь с макетом</button>
+</div>
+`;
+}
+
 function initProductGallery(prefix,images){
  const image=root.querySelector('#'+prefix+'-gallery-main');
  const strip=root.querySelector('#'+prefix+'-gallery-thumbs');
@@ -211,7 +263,7 @@ else if(page.startsWith('product/')){const p=products.find(x=>x.id===page.split(
 ?productGalleryCard('mug',MUG_GALLERY,'Кружки с индивидуальным принтом Prompt2Print')
 :p.id==='bottle'
 ?productGalleryCard('bottle',BOTTLE_GALLERY,'Бутылки с индивидуальным принтом Prompt2Print')
-:`<div class="product-title-card"><div class="eyebrow">Принт под заказ</div><b>Твоя идея.<br>На ${p.id==='mug'?'кружке':p.id==='bottle'?'бутылке':p.id==='socks'?'носках':p.id==='sweatshirt'?'толстовке':p.id==='bag'?'шоппере':'плёнке'}.</b><span>Каждый принт уникален ↗</span></div>`}<div><h2>${p.single}</h2><p class="price">${p.price}</p><p style="color:var(--muted)">${p.text}</p><div class="specs">${p.specs.map(s=>`<div><span>${s[0]}</span>${s[1]}</div>`).join('')}</div>${['tshirt','sweatshirt'].includes(p.id)?`<div class="actions" style="margin:8px 0 26px"><a class="btn" href="#studio/${p.id}">Примерить свой принт ↗</a><a class="btn yellow" href="#order/${p.id}">Заказать на сайте ↗</a></div>`:''}${p.id==='tshirt'?tshirtDetails():p.id==='sweatshirt'?sweatshirtDetails():''}<div class="notice"><b>Заказ на сайте. Макет до печати.</b><br>Уточним основу, размер и стоимость, покажем результат до печати.</div>${!['tshirt','sweatshirt'].includes(p.id)?`<div class="actions">${['bottle','bag'].includes(p.id)?`<a class="btn" href="#studio/${p.id}">Примерить свой принт ↗</a>`:''}<a class="btn yellow" href="#order/${p.id}">Заказать на сайте ↗</a></div>`:''}<p class="micro" style="margin-top:16px">Итоговую стоимость подтвердим после проверки макета и деталей заказа.</p></div></div></section>`;if(p.id==='tshirt'){initProductGallery('tshirt',TSHIRT_GALLERY);initTshirtTabs()}if(p.id==='sweatshirt'){initProductGallery('sweatshirt',SWEATSHIRT_GALLERY);initTshirtTabs()}if(p.id==='coloring')initProductGallery('coloring',COLORING_GALLERY);if(p.id==='mug')initProductGallery('mug',MUG_GALLERY);if(p.id==='bottle')initProductGallery('bottle',BOTTLE_GALLERY)}
+:`<div class="product-title-card"><div class="eyebrow">Принт под заказ</div><b>Твоя идея.<br>На ${p.id==='mug'?'кружке':p.id==='bottle'?'бутылке':p.id==='socks'?'носках':p.id==='sweatshirt'?'толстовке':p.id==='bag'?'шоппере':'плёнке'}.</b><span>Каждый принт уникален ↗</span></div>`}<div><h2>${p.single}</h2><p class="price">${p.price}</p><p style="color:var(--muted)">${p.text}</p><div class="specs">${p.specs.map(s=>`<div><span>${s[0]}</span>${s[1]}</div>`).join('')}</div>${['tshirt','sweatshirt'].includes(p.id)?`<div class="actions" style="margin:8px 0 26px"><a class="btn" href="#studio/${p.id}">Примерить свой принт ↗</a><a class="btn yellow" href="#order/${p.id}">Заказать на сайте ↗</a></div>`:''}${p.id==='tshirt'?tshirtDetails():p.id==='sweatshirt'?sweatshirtDetails():p.id==='dtf'?dtfDetails():''}${p.id!=='dtf'?`<div class="notice"><b>Заказ на сайте. Макет до печати.</b><br>Уточним основу, размер и стоимость, покажем результат до печати.</div>`:''}${!['tshirt','sweatshirt','dtf'].includes(p.id)?`<div class="actions">${['bottle','bag'].includes(p.id)?`<a class="btn" href="#studio/${p.id}">Примерить свой принт ↗</a>`:''}<a class="btn yellow" href="#order/${p.id}">Заказать на сайте ↗</a></div>`:''}<p class="micro" style="margin-top:16px">Итоговую стоимость подтвердим после проверки макета и деталей заказа.</p></div></div></section>`;if(p.id==='tshirt'){initProductGallery('tshirt',TSHIRT_GALLERY);initTshirtTabs()}if(p.id==='sweatshirt'){initProductGallery('sweatshirt',SWEATSHIRT_GALLERY);initTshirtTabs()}if(p.id==='coloring')initProductGallery('coloring',COLORING_GALLERY);if(p.id==='mug')initProductGallery('mug',MUG_GALLERY);if(p.id==='bottle')initProductGallery('bottle',BOTTLE_GALLERY);if(p.id==='dtf'){const b=root.querySelector('#dtf-help-open'),h=document.getElementById('p2p-help-open');if(b&&h)b.addEventListener('click',()=>h.click())}}
 else if(page==='how'){main.innerHTML=top('Как заказать','Четыре простых шага. Оплата после согласования макета.')+`<section class="section"><div class="wrap"><div class="steps">${renderSteps()}</div><div class="info-grid" style="margin-top:50px"><div class="info-box"><h3>Что прислать для макета</h3><ul><li>Какой товар нужен и сколько штук.</li><li>Фото или рисунок в исходном качестве.</li><li>Текст без сокращений, если он нужен.</li><li>Цвет, размер изделия и желаемое размещение.</li><li>К какой дате нужен заказ.</li></ul></div><div class="info-box"><h3>Хочешь показать, как задумано?</h3><p>Собери пример в конструкторе: добавь изображение и надпись, подбери положение и прикрепи набросок к заказу.</p><div class="actions"><a class="btn" href="#studio">Открыть конструктор ↗</a></div></div></div></div></section><section class="section soft"><div class="wrap faq">${renderFaq()}</div></section>`}
 else if(page==='business'){main.innerHTML=top('Мерч для своей команды','Небольшие тиражи для кафе, фитнес-студий, школ, лагерей, мероприятий и других организаций.')+`<section class="section"><div class="wrap"><div class="business"><div><div class="eyebrow">Общее дело. Свой принт.</div><h2>Не просто логотип.<br>Чувство команды.</h2><p>Подберём изделие и размещение принта под задачу компании. Можно начать с тестового экземпляра, а затем заказать тираж.</p><div class="actions"><a class="btn yellow" href="#order">Рассчитать мой заказ ↗</a></div></div><div class="tags"><span class="tag">Кафе</span><span class="tag">Школы</span><span class="tag">Фитнес</span><span class="tag">Лагеря</span><span class="tag">События</span><span class="tag">Компании</span></div></div>
 

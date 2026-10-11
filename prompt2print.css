@@ -93,7 +93,7 @@ html, body, #allrecords, .t-records {
 #p2p-help-modal>p{margin:0;color:#566575;line-height:1.5}
 .p2p-help-product{margin:14px 0;padding:11px 13px;border:1px solid var(--p2pl);border-radius:14px;background:#f5f9ff;font-size:13px}
 .p2p-help-product b{color:var(--p2pb)}
-.p2p-help-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.p2p-help-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .p2p-help-btn{min-height:52px;display:grid;place-items:center;border:1px solid var(--p2pl);border-radius:14px;background:#fff;color:var(--p2pn);text-decoration:none;cursor:pointer;font:700 13px Arial}
 .p2p-help-primary{background:var(--p2pb);color:#fff;border-color:var(--p2pb)}
 .p2p-help-note{margin-top:12px;padding:11px 13px;border-radius:14px;background:#fff7d6;font-size:13px;line-height:1.4}

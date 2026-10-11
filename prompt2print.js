@@ -607,6 +607,16 @@ $('object-order').onclick=()=>{studioDraft={product:kind,preview:composite().toD
 $('object-download').onclick=()=>{const out=composite();out.toBlob(blob=>{if(!blob){$('object-status').textContent='Не удалось создать PNG.';return}const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='Prompt2Print-'+kind+'-both-sides.png';link.textContent='Открыть PNG обеих сторон';link.className='plain-link';$('object-status').replaceChildren(link);link.click();setTimeout(()=>URL.revokeObjectURL(url),120000)},'image/png');};
 cleanStudio=()=>{alive=false;};load();
 }
+function hideExtraTildaBlocks(){
+ const records=[...document.querySelectorAll('#allrecords .r, .t-records .r')];
+ records.forEach(function(rec){
+  if(rec.querySelector('#p2p-external-host')) return;
+  if(rec.querySelector('textarea[name="order_details"]')) return;
+  rec.style.setProperty('display','none','important');
+  rec.setAttribute('aria-hidden','true');
+ });
+}
+
 function hideTechnicalTildaForm(){
  const details=document.querySelector('textarea[name="order_details"]');
  if(!details)return;
@@ -628,7 +638,7 @@ function hideTechnicalTildaForm(){
   block.setAttribute('aria-hidden','true');
  }
 }
-window.addEventListener('load',()=>setTimeout(hideTechnicalTildaForm,500));setTimeout(hideTechnicalTildaForm,1000);
+window.addEventListener('load',()=>setTimeout(()=>{hideExtraTildaBlocks();hideTechnicalTildaForm()},500));setTimeout(()=>{hideExtraTildaBlocks();hideTechnicalTildaForm()},1000);setTimeout(()=>{hideExtraTildaBlocks();hideTechnicalTildaForm()},2200);
 window.addEventListener('hashchange',route);route();
 })();
 

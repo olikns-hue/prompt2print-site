@@ -99,3 +99,15 @@ html, body, #allrecords, .t-records {
 .p2p-help-note{margin-top:12px;padding:11px 13px;border-radius:14px;background:#fff7d6;font-size:13px;line-height:1.4}
 .p2p-help-status{min-height:18px;margin-top:7px;color:#68798a;font-size:11px}
 @media(max-width:640px){#p2p-help-open{right:12px;bottom:12px}#p2p-help-modal{left:10px;right:10px;bottom:68px;width:auto;padding:20px 16px}.p2p-help-actions{grid-template-columns:1fr}#p2p-help-title{font-size:23px}}
+.home-works-shell{position:relative;margin-top:18px}
+.home-works-gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 14px;scrollbar-width:thin}
+.home-work-card{flex:0 0 min(320px,78vw);height:420px;scroll-snap-align:start;background:#fff;border:1px solid #e6ecef;border-radius:18px;overflow:hidden;box-shadow:0 8px 28px rgba(25,52,59,.07)}
+.home-work-card img{display:block;width:100%;height:100%;object-fit:contain;background:#fff}
+.home-works-loading{padding:28px;border:1px dashed #cddadd;border-radius:16px;color:var(--muted);min-width:100%}
+.home-works-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.96);box-shadow:0 4px 18px rgba(0,0,0,.12);font-size:30px;line-height:1;cursor:pointer}
+.home-works-prev{left:-10px}.home-works-next{right:-10px}
+.home-works-note{margin-top:6px}
+@media(max-width:700px){
+ .home-work-card{flex-basis:84vw;height:390px}
+ .home-works-arrow{display:none}
+}

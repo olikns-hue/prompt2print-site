@@ -263,8 +263,53 @@ function initProductGallery(prefix,images){
  if(next)next.addEventListener('click',()=>set(index+1));
 }
 
+async function loadPhotoStockGallery(){
+ const box=main.querySelector('[data-photo-stock-gallery]');
+ if(!box)return;
+ const clean=u=>String(u||'').trim().replace(/^url\(["']?|["']?\)$/g,'');
+ const pickUrl=el=>{
+  const attrs=['data-original','data-img-zoom-url','data-lazy-target','data-src','src'];
+  for(const a of attrs){const v=clean(el.getAttribute&&el.getAttribute(a));if(v&&/^https?:\/\//i.test(v))return v}
+  return '';
+ };
+ try{
+  const r=await fetch('/photo-stock?ts='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const source=await r.text(),doc=new DOMParser().parseFromString(source,'text/html');
+  const urls=[];
+  const add=u=>{
+   u=clean(u);
+   if(!u||!/^https?:\/\//i.test(u))return;
+   if(!/(static\.tildacdn\.(?:com|info|net)|static\.tildacdn\.ink)/i.test(u))return;
+   if(!/\.(?:jpe?g|png|webp)(?:[?#]|$)/i.test(u))return;
+   const key=u.replace(/[?#].*$/,'');
+   if(!urls.some(x=>x.replace(/[?#].*$/,'')===key))urls.push(u);
+  };
+  doc.querySelectorAll('img').forEach(img=>add(pickUrl(img)));
+  doc.querySelectorAll('[data-original],[data-img-zoom-url],[data-bg-lazy]').forEach(el=>{
+   add(el.getAttribute('data-original'));
+   add(el.getAttribute('data-img-zoom-url'));
+   add(el.getAttribute('data-bg-lazy'));
+  });
+  if(!urls.length)throw new Error('Фото не найдены');
+  box.innerHTML=urls.map((src,i)=>`
+    <a class="home-work-card" href="${src}" target="_blank" rel="noopener" aria-label="Открыть фото ${i+1}">
+      <img src="${src}" alt="Пример работы Prompt2Print ${i+1}" loading="lazy">
+    </a>`).join('');
+  const shell=box.closest('.home-works-shell');
+  const prev=shell&&shell.querySelector('.home-works-prev');
+  const next=shell&&shell.querySelector('.home-works-next');
+  const step=()=>Math.max(280,Math.round(box.clientWidth*.72));
+  if(prev)prev.onclick=()=>box.scrollBy({left:-step(),behavior:'smooth'});
+  if(next)next.onclick=()=>box.scrollBy({left:step(),behavior:'smooth'});
+ }catch(e){
+  console.error('Prompt2Print photo-stock:',e);
+  box.innerHTML='<div class="home-works-loading">Фотографии скоро появятся здесь.</div>';
+ }
+}
+
 function route(){if(cleanStudio){cleanStudio();cleanStudio=null}let page=location.hash.slice(1)||'home';root.querySelector('nav').classList.remove('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded','false');root.querySelectorAll('nav a').forEach(a=>a.setAttribute('aria-current',a.hash===location.hash?'page':'false'));
-if(page==='home'){main.innerHTML=root.querySelector('#home-template').innerHTML;main.querySelector('[data-catalog]').innerHTML=catalog();main.querySelector('[data-steps]').innerHTML=renderSteps();main.querySelector('[data-faq]').innerHTML=renderFaq()}
+if(page==='home'){main.innerHTML=root.querySelector('#home-template').innerHTML;main.querySelector('[data-catalog]').innerHTML=catalog();main.querySelector('[data-steps]').innerHTML=renderSteps();main.querySelector('[data-faq]').innerHTML=renderFaq();loadPhotoStockGallery()}
 else if(page==='catalog'){main.innerHTML=top('Выбери основу для идеи','Принты под заказ. Каждый макет согласуем до печати.')+`<section class="section"><div class="wrap"><div class="catalog">${catalog()}</div><div class="notice">Итоговая стоимость заказа зависит от выбранного изделия, размера принта, количества и доставки. Подтвердим её до оплаты.</div></div></section>`}
 else if(page.startsWith('product/')){const p=products.find(x=>x.id===page.split('/')[1]);if(!p){location.hash='catalog';return}main.innerHTML=top(p.single,'Начнём с твоей идеи. До покупки согласуем макет и все детали.')+`<section class="section"><div class="wrap product-detail">${p.id==='tshirt'
 ?productGalleryCard('tshirt',TSHIRT_GALLERY,'Футболки с индивидуальным принтом Prompt2Print')

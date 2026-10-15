@@ -505,15 +505,53 @@ setTimeout(prepareCloudUploader,500);
 setTimeout(prepareCloudUploader,1800);
 function buildOrderText(){
 orderDraft.items.forEach((item,i)=>{if(item.product==='tshirt'){const sel=$('item-size-'+i);if(sel){item.size=sel.value;const other=$('item-other-'+i);item.otherSize=other?other.value:'';}}});
-const lines=orderDraft.items.map((item,i)=>{const p=products.find(p=>p.id===item.product),size=['tshirt','readytshirt'].includes(item.product)?(item.size==='other'?(item.otherSize||'не указан'):(item.size||'не указан')):'';return `${i+1}. ${p.single} — ${item.quantity} шт.${['tshirt','readytshirt'].includes(item.product)?'\n   Размер: '+size:''}${item.product==='coloring'?'\n   Вариант: '+(item.coloringFormat||'Печатная книга — 400 ₽'):''}${item.product==='coloring'&&item.coloringTitle?'\n   Название на обложке: '+item.coloringTitle:''}${item.product==='coloring'?'\n   Фотографии: нужно получить 10 исходных фото при согласовании':''}${item.details?'\n   '+item.details:''}${item.design?'\n   Макет: '+item.design.description:''}`});
-lines.push('\nСогласие на обработку данных: дано; редакция '+CONSENT_VERSION+'.');
-if(orderDraft.file)lines.push('\nИсходник из конструктора: '+orderDraft.file.name);
-if(orderDraft.cloudFiles&&orderDraft.cloudFiles.length)lines.push('Исходник загружен в Яндекс.Диск через форму Tilda: да');
-if(orderDraft.mockupLink)lines.push('\nМакет покупателя (открыть изображение):\n'+orderDraft.mockupLink);
-if(orderDraft.comment)lines.push('\nИдея: '+orderDraft.comment);
-lines.push('\nИмя: '+orderDraft.name,'Телефон: '+orderDraft.phone,'Почта: '+orderDraft.email,'Предпочтительный способ связи: '+orderDraft.contactMethod);if(orderDraft.contactMethod!=='Позвонить')lines.push('Контакт для связи: '+orderDraft.contactValue);lines.push('Город: '+orderDraft.city,'Доставка: '+orderDraft.delivery);
+
+const lines=['🟡 НОВЫЙ ЗАКАЗ PROMPT2PRINT',''];
+
+lines.push('🛍 ЗАКАЗ');
+orderDraft.items.forEach((item,i)=>{
+ const p=products.find(p=>p.id===item.product);
+ const size=['tshirt','readytshirt'].includes(item.product)?(item.size==='other'?(item.otherSize||'не указан'):(item.size||'не указан')):'';
+ lines.push((orderDraft.items.length>1?(i+1)+'. ':'')+(p?p.single:item.product));
+ lines.push('Количество: '+item.quantity+' шт.');
+ if(size)lines.push('Размер: '+size);
+ if(item.product==='coloring'){
+  lines.push('Вариант: '+(item.coloringFormat||'Печатная книга — 400 ₽'));
+  if(item.coloringTitle)lines.push('Название на обложке: '+item.coloringTitle);
+  lines.push('Фото: нужно получить 10 исходных фото');
+ }
+ if(item.details)lines.push('Детали: '+item.details);
+ if(item.design)lines.push('Макет: '+item.design.description);
+ if(i<orderDraft.items.length-1)lines.push('');
+});
+
+if(orderDraft.comment){
+ lines.push('','💡 ИДЕЯ / КОММЕНТАРИЙ',orderDraft.comment);
+}
+
+lines.push('','👤 КЛИЕНТ');
+lines.push('Имя: '+orderDraft.name);
+lines.push('Телефон: '+orderDraft.phone);
+if(orderDraft.email)lines.push('Почта: '+orderDraft.email);
+lines.push('Как связаться: '+orderDraft.contactMethod);
+if(orderDraft.contactMethod!=='Позвонить'&&orderDraft.contactValue)lines.push('Контакт: '+orderDraft.contactValue);
+
+lines.push('','📍 ДОСТАВКА');
+lines.push('Город: '+orderDraft.city);
+lines.push('Способ: '+orderDraft.delivery);
 if(orderDraft.address)lines.push('Адрес / пункт: '+orderDraft.address);
-lines.push('\nИтоговую стоимость и макет согласуем до оплаты.');
+
+if(orderDraft.file||orderDraft.cloudFiles&&orderDraft.cloudFiles.length||orderDraft.mockupLink){
+ lines.push('','📎 ФАЙЛЫ');
+ if(orderDraft.file)lines.push('Исходник: '+orderDraft.file.name);
+ if(orderDraft.cloudFiles&&orderDraft.cloudFiles.length)lines.push('Исходник загружен в Яндекс.Диск');
+ if(orderDraft.mockupLink)lines.push('Макет покупателя:\n'+orderDraft.mockupLink);
+}
+
+lines.push('','✅ Согласие на обработку данных: дано');
+lines.push('Редакция: '+CONSENT_VERSION);
+lines.push('','Стоимость и макет согласовать до оплаты.');
+
 return lines.join('\n');
 }
 function findTildaReceiver(){

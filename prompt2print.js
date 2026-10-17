@@ -60,8 +60,8 @@ return `<div class="tshirt-choice" role="tablist" aria-label="Цвет футб�
 <p>Печать возможна спереди, сзади или с обеих сторон. Размер футболки согласуем перед изготовлением.</p>
 <h3 style="margin-top:28px">Размерная таблица чёрной футболки</h3>${table(blackRows)}
 <div class="measure-help"><b>Как измерить:</b> ширину измеряем по линии проймы от края до края, длину от верхней точки плеча до низа изделия. Допустимое отклонение размеров 1–2 см.</div>
-<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Если хочешь понять, чем отличаются эти способы печати и почему для разных тканей мы используем разные технологии, <a class="plain-link" href="/01">прочитай нашу статью →</a></div>
 </div>
+<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной футболки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/01">Чем отличается DTF от сублимации? →</a></div></div>
 `;
 }
 function sweatshirtDetails(){
@@ -107,7 +107,7 @@ ${table()}
 ${table()}
 <div class="measure-help"><b>Допустимое отклонение:</b> 1–2 см. Размер толстовки согласуем перед изготовлением.</div>
 </div>
-<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Почему белые и чёрные изделия печатаются по-разному и в чём разница технологий, <a class="plain-link" href="/01">рассказали в статье →</a></div>`;
+<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной толстовки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/01">Чем отличается DTF от сублимации? →</a></div></div>`;
 }
 
 function initTshirtTabs(){

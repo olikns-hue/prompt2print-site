@@ -30,7 +30,7 @@ function catalog(){return products.map((p,i)=>`<a class="product" href="#product
 function renderSteps(){return steps.map((s,i)=>`<article class="step"><span class="count">0${i+1}</span><h3>${s[0]}</h3><p>${s[1]}</p></article>`).join('')}
 function renderFaq(){return faq.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join('')}
 function top(title,text){return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="#home">Главная</a> / ${title}</div><h1>${title}</h1><p>${text}</p></div></section>`}
-function contactCard(){return `<div class="info-box"><h3>Мы на связи</h3><p><a href="tel:+79171040338">+7 (917) 104-03-38</a><br><a href="mailto:prompt2print@mail.ru">prompt2print@mail.ru</a></p><p>Самара, ул. Фрунзе, 14.<br>Перед визитом договорись с нами о времени.</p><div class="actions"><a class="btn" href="#order">Заказать на сайте ↗</a></div><p class="micro">Вопросы по макету, доставке и заказу можно обсудить напрямую с нами.</p></div>`}
+function contactCard(){return `<div class="info-box"><h3>Мы на связи</h3><p><a href="tel:+79171040338">+7 (917) 104-03-38</a><br><a href="mailto:prompt2print@mail.ru">prompt2print@mail.ru</a></p><p>Самара, ул. Фрунзе, 14.<br>Перед визитом договорись с нами о времени.</p><p class="micro"><b>Есть вопрос или хочешь обсудить заказ?</b><br>Напиши нам через «Помощь с макетом?» в правом нижнем углу. Там можно отправить фото, текст и рассказать идею.</p></div>`}
 let studioDraft=null;
 const CLOUDINARY_CLOUD_NAME='phhcih47';
 const CLOUDINARY_UPLOAD_PRESET='prompt2print_mockups';

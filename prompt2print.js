@@ -61,7 +61,7 @@ return `<div class="tshirt-choice" role="tablist" aria-label="Цвет футб�
 <h3 style="margin-top:28px">Размерная таблица чёрной футболки</h3>${table(blackRows)}
 <div class="measure-help"><b>Как измерить:</b> ширину измеряем по линии проймы от края до края, длину от верхней точки плеча до низа изделия. Допустимое отклонение размеров 1–2 см.</div>
 </div>
-<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной футболки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/01">Чем отличается DTF от сублимации? →</a></div></div>
+<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной футболки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/articles/dtf-ili-sublimaciya">Чем отличается DTF от сублимации? →</a></div></div>
 `;
 }
 function sweatshirtDetails(){
@@ -107,7 +107,7 @@ ${table()}
 ${table()}
 <div class="measure-help"><b>Допустимое отклонение:</b> 1–2 см. Размер толстовки согласуем перед изготовлением.</div>
 </div>
-<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной толстовки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/01">Чем отличается DTF от сублимации? →</a></div></div>`;
+<div class="notice" style="margin-top:22px"><b>DTF или сублимация?</b><br>Не знаешь, чем отличаются эти способы печати и почему для белой и чёрной толстовки используются разные технологии?<div class="actions" style="margin-top:14px"><a class="btn light" href="/articles/dtf-ili-sublimaciya">Чем отличается DTF от сублимации? →</a></div></div>`;
 }
 
 function initTshirtTabs(){
@@ -308,18 +308,47 @@ async function loadPhotoStockGallery(){
 }
 
 
-function article01HTML(){
-return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="/">Главная</a> / Статьи</div><div class="eyebrow">Разбираемся без сложных терминов</div><h1>Сублимация или DTF: какую печать выбрать для футболки?</h1><p>Способ печати влияет на внешний вид принта, ощущения на ткани и то, для какой основы он подходит. Ниже коротко объясняем разницу.</p></div></section>
+const ARTICLES=[
+  {
+    slug:'dtf-ili-sublimaciya',
+    title:'Сублимация или DTF: какую печать выбрать для футболки?',
+    excerpt:'Чем отличаются два способа печати, какие ткани им подходят и почему для белой и чёрной одежды мы используем разные технологии.',
+    tag:'Печать на одежде',
+    readTime:'4 минуты',
+    seoTitle:'DTF или сублимация: что выбрать для печати на футболке | Prompt2Print',
+    seoDescription:'Чем отличаются DTF и сублимация, какие ткани подходят для каждого способа и что выбрать для белой или чёрной футболки. Примеры и советы Prompt2Print.'
+  }
+];
+
+function articlesIndexHTML(){
+return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="/">Главная</a> / Статьи</div><div class="eyebrow">Полезно знать перед печатью</div><h1>Статьи Prompt2Print</h1><p>Коротко и понятно о принтах, макетах, тканях и способах печати. Новые материалы будем добавлять сюда.</p></div></section>
+<section class="section"><div class="wrap">
+  <div class="articles-grid">
+    ${ARTICLES.map(a=>`<a class="article-card" href="/articles/${a.slug}">
+      <span class="article-tag">${a.tag}</span>
+      <h2>${a.title}</h2>
+      <p>${a.excerpt}</p>
+      <span class="article-card-bottom"><span>${a.readTime}</span><b>Читать →</b></span>
+    </a>`).join('')}
+  </div>
+</div></section>`;
+}
+
+function articlePageHTML(slug){
+const a=ARTICLES.find(x=>x.slug===slug);
+if(!a)return articlesIndexHTML();
+if(slug==='dtf-ili-sublimaciya'){
+return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="/">Главная</a> / <a href="/articles">Статьи</a> / DTF или сублимация</div><div class="eyebrow">${a.tag} · ${a.readTime}</div><h1>${a.title}</h1><p>Способ печати влияет на внешний вид принта, ощущения на ткани и то, для какой основы он подходит. Ниже коротко объясняем разницу.</p></div></section>
 <section class="section"><div class="wrap p2p-article">
   <article>
     <h2>Что такое сублимация?</h2>
-    <p>Сублимация — это способ печати, при котором краска под воздействием температуры проникает в волокна ткани. Принт практически не ощущается на ощупь и хорошо подходит для светлых тканей с высоким содержанием полиэстера.</p>
+    <p><strong>Сублимация</strong> — это способ печати, при котором краска под воздействием температуры проникает в волокна ткани. Принт практически не ощущается на ощупь и хорошо подходит для светлых тканей с высоким содержанием полиэстера.</p>
     <p>Поэтому этот способ мы используем прежде всего для <strong>белых футболок и толстовок</strong>, подходящих для сублимационной печати.</p>
     <div class="article-links"><a class="btn" href="/#product/tshirt">Посмотреть футболки →</a><a class="btn light" href="/#product/sweatshirt">Посмотреть толстовки →</a></div>
 
     <h2>Что такое DTF?</h2>
     <p><strong>DTF</strong> расшифровывается как <em>Direct to Film</em>, то есть «печать на плёнке». Изображение печатают на специальной плёнке, наносят клеевой порошок и переносят на ткань термопрессом.</p>
-    <p>Получается тонкий слой с рисунком, который можно почувствовать рукой. DTF позволяет печатать яркие цветные изображения и использовать белый цвет, поэтому отлично подходит в том числе для <strong>чёрных футболок и толстовок</strong>.</p>
+    <p>Получается тонкий слой с рисунком, который можно почувствовать рукой. DTF позволяет печатать яркие цветные изображения и использовать белый цвет, поэтому подходит в том числе для <strong>чёрных футболок и толстовок</strong>.</p>
     <div class="article-links"><a class="btn" href="/#product/tshirt">Посмотреть футболки →</a><a class="btn light" href="/#product/sweatshirt">Посмотреть толстовки →</a></div>
 
     <h2>В чём главная разница?</h2>
@@ -328,13 +357,29 @@ return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="
       <div><strong>DTF</strong><p>Принт переносится на поверхность ткани отдельным слоем. Он заметнее на ощупь, зато позволяет печатать белые и яркие элементы на тёмной одежде.</p></div>
     </div>
 
+    <p>Если хочется белую футболку с лёгким, почти неощутимым принтом, мы рассмотрим сублимацию. Если нужна чёрная футболка, белые детали или насыщенный рисунок, предложим DTF.</p>
+
     <div class="notice article-callout"><h3>Не знаешь, какой способ печати выбрать?</h3><p>Посмотри футболки и толстовки или напиши нам через «Помочь с макетом?» на основном сайте. Мы посмотрим на изображение и подскажем, какой способ подойдёт именно для твоего заказа.</p><div class="article-links"><a class="btn" href="/#product/tshirt">Футболки →</a><a class="btn light" href="/#product/sweatshirt">Толстовки →</a></div></div>
+
+    <div class="article-back"><a class="plain-link" href="/articles">← Все статьи</a></div>
   </article>
 </div></section>`;
 }
+return articlesIndexHTML();
+}
 
-function route(){if(cleanStudio){cleanStudio();cleanStudio=null}const articlePath=location.pathname.replace(/\/+$/,'')==='/01';if(articlePath){root.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href','/'+a.getAttribute('href')))}let page=articlePath?'article01':(location.hash.slice(1)||'home');root.querySelector('nav').classList.remove('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded','false');root.querySelectorAll('nav a').forEach(a=>a.setAttribute('aria-current',a.hash===location.hash?'page':'false'));
-if(page==='article01'){main.innerHTML=article01HTML()}
+function setPageMeta(title,description){
+document.title=title;
+if(description){
+ let m=document.querySelector('meta[name="description"]');
+ if(!m){m=document.createElement('meta');m.name='description';document.head.appendChild(m)}
+ m.content=description;
+}
+}
+
+function route(){if(cleanStudio){cleanStudio();cleanStudio=null}const path=location.pathname.replace(/\/+$/,'')||'/';if(path!=='/'){root.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href','/'+a.getAttribute('href')))}let page;if(path==='/articles')page='articles';else if(path==='/articles/dtf-ili-sublimaciya'||path==='/01')page='article/dtf-ili-sublimaciya';else page=location.hash.slice(1)||'home';root.querySelector('nav').classList.remove('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded','false');root.querySelectorAll('nav a').forEach(a=>{const href=a.getAttribute('href')||'';const active=(href==='/articles'&&path.indexOf('/articles')===0)||(a.hash&&a.hash===location.hash);a.setAttribute('aria-current',active?'page':'false')});
+if(page==='articles'){main.innerHTML=articlesIndexHTML();setPageMeta('Статьи о DTF, сублимации и печати | Prompt2Print','Полезные статьи Prompt2Print о DTF, сублимации, макетах и печати на одежде и подарках.')}
+else if(page.startsWith('article/')){const slug=page.split('/')[1],a=ARTICLES.find(x=>x.slug===slug);main.innerHTML=articlePageHTML(slug);if(a)setPageMeta(a.seoTitle,a.seoDescription)}
 else if(page==='home'){main.innerHTML=root.querySelector('#home-template').innerHTML;main.querySelector('[data-catalog]').innerHTML=catalog();main.querySelector('[data-steps]').innerHTML=renderSteps();main.querySelector('[data-faq]').innerHTML=renderFaq();loadPhotoStockGallery()}
 else if(page==='catalog'){main.innerHTML=top('Выбери основу для идеи','Принты под заказ. Каждый макет согласуем до печати.')+`<section class="section"><div class="wrap"><div class="catalog">${catalog()}</div><div class="notice">Итоговая стоимость заказа зависит от выбранного изделия, размера принта, количества и доставки. Подтвердим её до оплаты.</div></div></section>`}
 else if(page.startsWith('product/')){const p=products.find(x=>x.id===page.split('/')[1]);if(!p){location.hash='catalog';return}main.innerHTML=top(p.single,'Начнём с твоей идеи. До покупки согласуем макет и все детали.')+`<section class="section"><div class="wrap product-detail">${p.id==='tshirt'
@@ -370,7 +415,7 @@ else if(page==='privacy'||page==='consent'){main.innerHTML=p2pLegalHTML(page,top
 else if(page==='order'||page.startsWith('order/')){main.innerHTML=top('Твоя идея — в заказ','Выбери изделия и расскажи о принте. Макет, стоимость и доставку согласуем до оплаты.')+orderHTML();initOrder(page.split('/')[1])}
 else if(page==='studio'||page==='studio/tshirt'||page==='studio/sweatshirt'){const kind=page==='studio/sweatshirt'?'sweatshirt':'tshirt';main.innerHTML=top('Примерь свой принт','Загрузи картинку, добавь текст и сохрани набросок. Финальный макет проверим вместе перед печатью.')+studioPicker(kind)+studioHTML(kind);initStudio(kind)}
 else if(page==='studio/bottle'||page==='studio/bag'){const kind=page.split('/')[1];main.innerHTML=top(kind==='bottle'?'Твоя бутылка. Две стороны идеи.':'Шоппер с твоим принтом','Размести рисунок и текст. Это набросок для согласования; точную область печати уточним перед изготовлением.')+studioPicker(kind)+objectStudioHTML(kind);initObjectStudio(kind)}
-else{location.hash='home';return}window.scrollTo(0,0);document.title=page==='article01'?'DTF или сублимация: что выбрать для печати на футболке | Prompt2Print':((page==='home'?'Твоя идея':'Принты на заказ')+' — Prompt2Print');}
+else{location.hash='home';return}window.scrollTo(0,0);if(!page.startsWith('article/')&&page!=='articles')document.title=(page==='home'?'Твоя идея':'Принты на заказ')+' — Prompt2Print';}
 root.querySelector('#menu-toggle').onclick=()=>{const n=root.querySelector('nav');n.classList.toggle('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded',String(n.classList.contains('open')))};
 function studioHTML(kind='tshirt'){const sweat=kind==='sweatshirt';return `<section class="section"><div class="wrap"><div class="studio"><div class="canvas-wrap"><canvas id="print-canvas" width="1200" height="1280" aria-label="Предпросмотр ${sweat?'толстовки':'футболки'} с принтом"></canvas><div class="canvas-meta"><span id="garment-side-caption">ПЕРЕД · схематичный макет</span><span id="area-label">Область 21 × 29,7 см</span></div><div class="side-thumbs"><div class="side-thumb active" id="front-thumb">ПЕРЕД<br><span class="micro" id="front-state">редактируется</span></div><div class="side-thumb" id="back-thumb">СПИНА<br><span class="micro" id="back-state">без принта</span></div></div></div><div class="controls"><h3>Твоя идея начинается здесь</h3><div class="garment-side-switch"><button type="button" id="side-front" class="active">ПЕРЕД</button><button type="button" id="side-back">СПИНА</button></div><p class="micro side-hint">Сделай разные принты спереди и сзади. Переключай сторону кнопками, каждая сторона сохраняется отдельно.</p><div class="two"><div class="field"><label for="shirt-color">${sweat?'Толстовка':'Футболка'}</label><select id="shirt-color"><option value="white">Белая</option><option value="black">Чёрная</option></select></div><div class="field"><label for="print-method">Способ печати</label><select id="print-method"><option value="sub">Сублимация · A4</option><option value="dtf">DTF · 30 × 35 см</option></select></div></div><div class="upload"><b style="font-size:14px">Картинка для выбранной стороны</b><p class="micro">PNG, JPG или WebP, до 15 МБ. Сейчас редактируется: <b id="editing-side">ПЕРЕД</b>.</p><input id="art-file" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Загрузить рисунок"><p class="micro" id="art-file-name"></p><button type="button" id="remove-art" class="plain-link" style="background:none;border:0;margin-top:10px" hidden>Убрать картинку с этой стороны</button><div id="upload-error" class="error" role="alert"></div></div><div id="art-controls" hidden><div class="field"><label class="label-line" for="art-width">Ширина рисунка <output id="width-val">14 см</output></label><input id="art-width" type="range" min="2" max="21" step=".1" value="14"></div><div class="two"><div class="field"><label for="art-x">Влево / вправо</label><input id="art-x" type="range" min="0" max="100" value="50"></div><div class="field"><label for="art-y">Выше / ниже</label><input id="art-y" type="range" min="0" max="100" value="20"></div></div><p class="micro" id="quality"></p></div><hr><div class="field"><label for="print-text">Текст на выбранной стороне</label><input id="print-text" type="text" maxlength="55" placeholder="Например: Твоя идея"></div><div class="two"><div class="field"><label for="text-size">Размер текста</label><input id="text-size" type="range" min="12" max="70" value="38"></div><div class="field"><label for="text-y">Положение текста</label><input id="text-y" type="range" min="0" max="100" value="50"></div></div><div class="two"><div class="field"><label for="font-select">Шрифт</label><select id="font-select"><option value="Arial">Простой</option><option value="Georgia">Классический</option><option value="Courier New">Печатная машинка</option><option value="Montserrat">Современный</option><option value="Comfortaa">Мягкий</option><option value="Oswald">Узкий</option><option value="Playfair Display">Элегантный</option><option value="Russo One">Мощный</option><option value="Caveat">От руки</option><option value="Marck Script">Рукописный</option><option value="Neucha">Творческий</option><option value="Yeseva One">Декоративный</option><option value="Rubik Mono One">Плакатный</option><option value="Bad Script">Каллиграфический</option></select></div><div class="field"><label for="text-color">Цвет текста</label><input id="text-color" type="color" value="#008b9c" style="width:100%;height:43px;border:1px solid #becbd6;border-radius:7px;background:white"></div></div><p class="micro">Пунктир показывает область печати и не печатается. Пустая сторона останется без принта.</p><div class="control-btns"><button type="button" class="btn yellow" id="add-to-order">Добавить обе стороны к заказу ↗</button><button type="button" class="btn" id="save-preview">Скачать набросок обеих сторон</button><button type="button" class="btn light" id="save-print">Скачать принт выбранной стороны</button><button type="button" class="btn light" id="reset-design">Сбросить выбранную сторону</button></div><div id="save-status" class="status" role="status" aria-live="polite"></div></div></div><div class="notice"><b>Перед и спина сохраняются отдельно.</b> Можно сделать принт только спереди, только сзади или с обеих сторон. Перед печатью мы всё равно покажем и согласуем финальный макет.</div><div class="actions"><a href="#order" class="btn">Открыть заказ ↗</a><a href="#catalog" class="btn light">Вернуться в каталог</a></div></div></section>`}
 function initStudio(kind='tshirt'){

@@ -125,3 +125,14 @@ html, body, #allrecords, .t-records {
 #p2p .article-callout h3{margin:0}
 #p2p .article-callout p{margin-top:12px;color:var(--muted);line-height:1.7}
 @media(max-width:700px){#p2p .article-compare{grid-template-columns:1fr}#p2p .article-links .btn{width:100%;text-align:center;justify-content:center}}
+
+#p2p .articles-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+#p2p .article-card{display:flex;flex-direction:column;min-height:285px;padding:30px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);transition:transform .18s,border-color .18s}
+#p2p .article-card:hover{transform:translateY(-4px);border-color:#7eafb3}
+#p2p .article-tag{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+#p2p .article-card h2{font-size:clamp(24px,2.5vw,34px);letter-spacing:-1px}
+#p2p .article-card p{margin-top:16px;color:var(--muted);line-height:1.7}
+#p2p .article-card-bottom{display:flex;justify-content:space-between;gap:18px;margin-top:auto;padding-top:28px;font-size:13px;color:var(--muted)}
+#p2p .article-card-bottom b{color:var(--blue)}
+#p2p .article-back{margin-top:36px}
+@media(max-width:700px){#p2p .articles-grid{grid-template-columns:1fr}#p2p .article-card{min-height:245px;padding:24px}}

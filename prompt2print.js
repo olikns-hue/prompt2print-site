@@ -26,7 +26,87 @@ const products=[
 ];
 const steps=[['Оставь заказ на сайте','Выбери изделие, количество и опиши свою идею.'],['Согласуем макет','Проверим файл, размер, размещение и стоимость.'],['Оплати заказ','После согласования подтвердим способ оплаты и реквизиты.'],['Получай свою вещь','Напечатаем и отправим выбранной службой доставки.']];
 const faq=[['Как заказать напрямую?','Можно нажать «Заказать на сайте» и оформить заявку там. А если не хочется разбираться, просто нажми «Помочь с макетом?» в правом нижнем углу, выбери Telegram или MAX и напиши нам. Расскажешь идею, пришлёшь фото или текст, а дальше всё согласуем вместе.'],['Можно ли вернуть индивидуальный заказ?','Качественное изделие с индивидуальными свойствами, которым может пользоваться только конкретный покупатель, не подлежит возврату по причине «передумал». Если обнаружился брак или ошибка в исполнении, свяжись с нами. Подробнее — в разделе «Обмен и возврат».'],['Можно заказать одну штуку?','Да. Делаем персональные подарки от одной штуки, а также небольшие тиражи для команд.'],['У меня нет готового макета. Что делать?','Нажми «Помочь с макетом?» в правом нижнем углу. Выбери Telegram или MAX, расскажи идею и пришли фото или текст. Макет соберём и согласуем вместе. Вуаля 🙂'],['Когда нужно оплачивать заказ?','Сначала согласуем макет, изделие и стоимость. Затем подтвердим способ оплаты. Печать начинаем после согласования всех деталей.'],['Сколько занимает изготовление?','Обработка заказа занимает 1–2 рабочих дня. Срок изготовления подтвердим при согласовании макета, а ориентир доставки — 3–5 рабочих дней в зависимости от города и службы.'],['Картинка из конструктора сразу пойдёт в печать?','Нет. Конструктор помогает показать идею. Перед изготовлением мы проверим исходное изображение, размер, расположение и цвет, затем согласуем окончательный макет.'],['Можно сделать принт для команды?','Да. Напиши, какие нужны вещи, сколько штук и к какой дате. Обсудим макет и рассчитаем тираж.']];
-function catalog(){return products.map((p,i)=>`<a class="product" href="#product/${p.id}"><span class="num">${String(i+1).padStart(2,'0')} / ${p.id==='readytshirt'?'ГОТОВЫЙ ПРИНТ':'ТВОЙ ДИЗАЙН'}</span><h3>${p.name}</h3><p>${p.desc}</p><span class="bottom"><span>${p.price}</span><span class="round" aria-hidden="true">↗</span></span></a>`).join('')}
+const SEO_PRODUCTS={
+  "/tolstovki": {
+    "id": "sweatshirt",
+    "title": "Толстовки с принтом на заказ в Самаре",
+    "description": "Печать на толстовках в Самаре: фото, надписи и логотипы. Белые и чёрные толстовки, размеры 46–58. Согласование макета, доставка по России.",
+    "faq": [
+      [
+        "Какие толстовки доступны?",
+        "Белые и чёрные толстовки размеров 46–58. Размер и доступность основы подтвердим при согласовании."
+      ],
+      [
+        "Можно напечатать логотип команды?",
+        "Да. Пришлите логотип, количество изделий и нужную дату. Рассчитаем заказ и согласуем размещение."
+      ],
+      [
+        "Где можно разместить рисунок?",
+        "Спереди, сзади или с обеих сторон. Размер и расположение принта согласуем до печати."
+      ]
+    ]
+  },
+  "/kruzhki": {
+    "id": "mug",
+    "title": "Кружки с фото и надписью на заказ в Самаре",
+    "description": "Печать на кружках в Самаре от 1 штуки. Ваше фото, надпись, рисунок или логотип. Макет согласуем до печати. Получение в Самаре и доставка по России.",
+    "faq": [
+      [
+        "Можно заказать одну кружку?",
+        "Да, печатаем кружки с индивидуальным дизайном от одной штуки."
+      ],
+      [
+        "Что можно напечатать на кружке?",
+        "Фотографию, имя, поздравление, рисунок или логотип. Макет подготовим с учётом формы кружки."
+      ],
+      [
+        "Какое фото прислать?",
+        "Лучше исходный файл в максимальном качестве. Проверим изображение и покажем макет перед изготовлением."
+      ]
+    ]
+  },
+  "/dtf-pechat": {
+    "id": "dtf",
+    "title": "DTF-печать и термонаклейки на заказ в Самаре",
+    "description": "DTF-печать в Самаре: термонаклейки с вашим рисунком, надписью или логотипом. От одного принта до рулонной печати, ширина 27,7 см. Доставка по России.",
+    "faq": [
+      [
+        "Что я получу при заказе DTF-печати?",
+        "Готовый термотрансфер на плёнке для переноса на одежду или текстиль. Само изделие в этот заказ не входит."
+      ],
+      [
+        "Можно заказать один принт?",
+        "Да. Печатаем отдельные принты, листы и рулонные заказы. Ширина рулонной печати — 27,7 см."
+      ],
+      [
+        "Как подготовить файл?",
+        "Пришлите исходный макет и укажите размер в сантиметрах, количество и цвет ткани. Проверим файл и согласуем стоимость до печати."
+      ]
+    ]
+  },
+  "/raskraska-iz-foto": {
+    "id": "coloring",
+    "title": "Персональная раскраска из фото на заказ",
+    "description": "Раскраска из ваших фотографий: 10 страниц А4 и цветная персональная обложка. Печатная книга, электронный PDF или комплект. Заказ в Самаре, доставка по России.",
+    "faq": [
+      [
+        "Сколько фотографий нужно?",
+        "Пришлите 10 фотографий. Каждую превратим в отдельную страницу-раскраску формата А4."
+      ],
+      [
+        "Можно получить только электронный файл?",
+        "Да. Можно выбрать PDF для самостоятельной печати, готовую книгу или книгу вместе с PDF."
+      ],
+      [
+        "Что входит в печатную версию?",
+        "10 страниц-раскрасок А4, персональная цветная обложка и переплёт. Детали оформления согласуем до изготовления."
+      ]
+    ]
+  }
+};
+const PRODUCT_URLS={tshirt:'/futbolki',sweatshirt:'/tolstovki',mug:'/kruzhki',dtf:'/dtf-pechat',coloring:'/raskraska-iz-foto'};
+function relatedProductsHTML(){return '<section class="section soft"><div class="wrap"><h2>Другие товары с вашим дизайном</h2><div class="actions">'+products.filter(p=>PRODUCT_URLS[p.id]).map(p=>'<a class="btn light" href="'+PRODUCT_URLS[p.id]+'">'+p.name+'</a>').join('')+'</div></div></section>'}
+function catalog(){return products.map((p,i)=>`<a class="product" href="${PRODUCT_URLS[p.id]||'/#product/'+p.id}"><span class="num">${String(i+1).padStart(2,'0')} / ${p.id==='readytshirt'?'ГОТОВЫЙ ПРИНТ':'ТВОЙ ДИЗАЙН'}</span><h3>${p.name}</h3><p>${p.desc}</p><span class="bottom"><span>${p.price}</span><span class="round" aria-hidden="true">↗</span></span></a>`).join('')}
 function renderSteps(){return steps.map((s,i)=>`<article class="step"><span class="count">0${i+1}</span><h3>${s[0]}</h3><p>${s[1]}</p></article>`).join('')}
 function renderFaq(){return faq.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join('')}
 function top(title,text){return `<section class="page-top"><div class="wrap"><div class="crumb"><a href="#home">Главная</a> / ${title}</div><h1>${title}</h1><p>${text}</p></div></section>`}
@@ -418,13 +498,13 @@ function tshirtSeoHTML(){
  </div></section>`;
 }
 
-function route(){if(cleanStudio){cleanStudio();cleanStudio=null}const path=location.pathname.replace(/\/+$/,'')||'/';if(path!=='/'){root.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href','/'+a.getAttribute('href')))}let page;if(path==='/futbolki')page='seo/futbolki';else if(path==='/articles')page='articles';else if(path==='/articles/dtf-ili-sublimaciya'||path==='/01')page='article/dtf-ili-sublimaciya';else page=location.hash.slice(1)||'home';root.querySelector('nav').classList.remove('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded','false');root.querySelectorAll('nav a').forEach(a=>{const href=a.getAttribute('href')||'';const active=(href==='/articles'&&path.indexOf('/articles')===0)||(a.hash&&a.hash===location.hash);a.setAttribute('aria-current',active?'page':'false')});
+function route(){if(cleanStudio){cleanStudio();cleanStudio=null}const path=location.pathname.replace(/\/+$/,'')||'/';if(path!=='/'){root.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href','/'+a.getAttribute('href')))}const seo=SEO_PRODUCTS[path];let page;if(seo)page='product/'+seo.id;else if(path==='/futbolki')page='seo/futbolki';else if(path==='/articles')page='articles';else if(path==='/articles/dtf-ili-sublimaciya'||path==='/01')page='article/dtf-ili-sublimaciya';else page=location.hash.slice(1)||'home';root.querySelector('nav').classList.remove('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded','false');root.querySelectorAll('nav a').forEach(a=>{const href=a.getAttribute('href')||'';const active=(href==='/articles'&&path.indexOf('/articles')===0)||(a.hash&&a.hash===location.hash);a.setAttribute('aria-current',active?'page':'false')});
 if(page==='seo/futbolki'){main.innerHTML=tshirtSeoHTML();setPageMeta('Печать на футболках в Самаре с вашим принтом | Prompt2Print','Печать на футболках в Самаре от 1 штуки. Фото, надписи, рисунки и логотипы. Белые и чёрные футболки, DTF и сублимация. Макет до печати.');initProductGallery('tshirt',TSHIRT_GALLERY);initTshirtTabs()}
 else if(page==='articles'){main.innerHTML=articlesIndexHTML();setPageMeta('Статьи о DTF, сублимации и печати | Prompt2Print','Полезные статьи Prompt2Print о DTF, сублимации, макетах и печати на одежде и подарках.')}
 else if(page.startsWith('article/')){const slug=page.split('/')[1],a=ARTICLES.find(x=>x.slug===slug);main.innerHTML=articlePageHTML(slug);if(a)setPageMeta(a.seoTitle,a.seoDescription)}
 else if(page==='home'){main.innerHTML=root.querySelector('#home-template').innerHTML;main.querySelector('[data-catalog]').innerHTML=catalog();main.querySelector('[data-steps]').innerHTML=renderSteps();main.querySelector('[data-faq]').innerHTML=renderFaq();loadPhotoStockGallery()}
 else if(page==='catalog'){main.innerHTML=top('Выбери основу для идеи','Принты под заказ. Каждый макет согласуем до печати.')+`<section class="section"><div class="wrap"><div class="catalog">${catalog()}</div><div class="notice">Итоговая стоимость заказа зависит от выбранного изделия, размера принта, количества и доставки. Подтвердим её до оплаты.</div></div></section>`}
-else if(page.startsWith('product/')){const p=products.find(x=>x.id===page.split('/')[1]);if(!p){location.hash='catalog';return}main.innerHTML=top(p.single,'Начнём с твоей идеи. До покупки согласуем макет и все детали.')+`<section class="section"><div class="wrap product-detail">${p.id==='tshirt'
+else if(page.startsWith('product/')){const p=products.find(x=>x.id===page.split('/')[1]);if(!p){location.hash='catalog';return}main.innerHTML=top(seo?seo.title:p.single,seo?seo.description:'Начнём с твоей идеи. До покупки согласуем макет и все детали.')+`<section class="section"><div class="wrap product-detail">${p.id==='tshirt'
 ?productGalleryCard('tshirt',TSHIRT_GALLERY,'Футболки с индивидуальным принтом Prompt2Print')
 :p.id==='coloring'
 ?productGalleryCard('coloring',COLORING_GALLERY,'Персональная раскраска из фотографий Prompt2Print')
@@ -457,7 +537,7 @@ else if(page==='privacy'||page==='consent'){main.innerHTML=p2pLegalHTML(page,top
 else if(page==='order'||page.startsWith('order/')){main.innerHTML=top('Твоя идея — в заказ','Выбери изделия и расскажи о принте. Макет, стоимость и доставку согласуем до оплаты.')+orderHTML();initOrder(page.split('/')[1])}
 else if(page==='studio'||page==='studio/tshirt'||page==='studio/sweatshirt'){const kind=page==='studio/sweatshirt'?'sweatshirt':'tshirt';main.innerHTML=top('Примерь свой принт','Загрузи картинку, добавь текст и сохрани набросок. Финальный макет проверим вместе перед печатью.')+studioPicker(kind)+studioHTML(kind);initStudio(kind)}
 else if(page==='studio/bottle'||page==='studio/bag'){const kind=page.split('/')[1];main.innerHTML=top(kind==='bottle'?'Твоя бутылка. Две стороны идеи.':'Шоппер с твоим принтом','Размести рисунок и текст. Это набросок для согласования; точную область печати уточним перед изготовлением.')+studioPicker(kind)+objectStudioHTML(kind);initObjectStudio(kind)}
-else{location.hash='home';return}window.scrollTo(0,0);if(!page.startsWith('article/')&&page!=='articles'&&!page.startsWith('seo/'))document.title=(page==='home'?'Твоя идея':'Принты на заказ')+' — Prompt2Print';}
+else{location.hash='home';return}if(seo){main.insertAdjacentHTML('beforeend','<section class="section"><div class="wrap faq"><h2>Частые вопросы</h2>'+seo.faq.map(q=>'<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>').join('')+'</div></section>');setPageMeta(seo.title+' | Prompt2Print',seo.description)}if(seo||page==='seo/futbolki')main.insertAdjacentHTML('beforeend',relatedProductsHTML());if(path!=='/')root.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href','/'+a.getAttribute('href')));window.scrollTo(0,0);if(!seo&&!page.startsWith('article/')&&page!=='articles'&&!page.startsWith('seo/'))document.title=(page==='home'?'Твоя идея':'Принты на заказ')+' — Prompt2Print';}
 root.querySelector('#menu-toggle').onclick=()=>{const n=root.querySelector('nav');n.classList.toggle('open');root.querySelector('#menu-toggle').setAttribute('aria-expanded',String(n.classList.contains('open')))};
 function studioHTML(kind='tshirt'){const sweat=kind==='sweatshirt';return `<section class="section"><div class="wrap"><div class="studio"><div class="canvas-wrap"><canvas id="print-canvas" width="1200" height="1280" aria-label="Предпросмотр ${sweat?'толстовки':'футболки'} с принтом"></canvas><div class="canvas-meta"><span id="garment-side-caption">ПЕРЕД · схематичный макет</span><span id="area-label">Область 21 × 29,7 см</span></div><div class="side-thumbs"><div class="side-thumb active" id="front-thumb">ПЕРЕД<br><span class="micro" id="front-state">редактируется</span></div><div class="side-thumb" id="back-thumb">СПИНА<br><span class="micro" id="back-state">без принта</span></div></div></div><div class="controls"><h3>Твоя идея начинается здесь</h3><div class="garment-side-switch"><button type="button" id="side-front" class="active">ПЕРЕД</button><button type="button" id="side-back">СПИНА</button></div><p class="micro side-hint">Сделай разные принты спереди и сзади. Переключай сторону кнопками, каждая сторона сохраняется отдельно.</p><div class="two"><div class="field"><label for="shirt-color">${sweat?'Толстовка':'Футболка'}</label><select id="shirt-color"><option value="white">Белая</option><option value="black">Чёрная</option></select></div><div class="field"><label for="print-method">Способ печати</label><select id="print-method"><option value="sub">Сублимация · A4</option><option value="dtf">DTF · 30 × 35 см</option></select></div></div><div class="upload"><b style="font-size:14px">Картинка для выбранной стороны</b><p class="micro">PNG, JPG или WebP, до 15 МБ. Сейчас редактируется: <b id="editing-side">ПЕРЕД</b>.</p><input id="art-file" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Загрузить рисунок"><p class="micro" id="art-file-name"></p><button type="button" id="remove-art" class="plain-link" style="background:none;border:0;margin-top:10px" hidden>Убрать картинку с этой стороны</button><div id="upload-error" class="error" role="alert"></div></div><div id="art-controls" hidden><div class="field"><label class="label-line" for="art-width">Ширина рисунка <output id="width-val">14 см</output></label><input id="art-width" type="range" min="2" max="21" step=".1" value="14"></div><div class="two"><div class="field"><label for="art-x">Влево / вправо</label><input id="art-x" type="range" min="0" max="100" value="50"></div><div class="field"><label for="art-y">Выше / ниже</label><input id="art-y" type="range" min="0" max="100" value="20"></div></div><p class="micro" id="quality"></p></div><hr><div class="field"><label for="print-text">Текст на выбранной стороне</label><input id="print-text" type="text" maxlength="55" placeholder="Например: Твоя идея"></div><div class="two"><div class="field"><label for="text-size">Размер текста</label><input id="text-size" type="range" min="12" max="70" value="38"></div><div class="field"><label for="text-y">Положение текста</label><input id="text-y" type="range" min="0" max="100" value="50"></div></div><div class="two"><div class="field"><label for="font-select">Шрифт</label><select id="font-select"><option value="Arial">Простой</option><option value="Georgia">Классический</option><option value="Courier New">Печатная машинка</option><option value="Montserrat">Современный</option><option value="Comfortaa">Мягкий</option><option value="Oswald">Узкий</option><option value="Playfair Display">Элегантный</option><option value="Russo One">Мощный</option><option value="Caveat">От руки</option><option value="Marck Script">Рукописный</option><option value="Neucha">Творческий</option><option value="Yeseva One">Декоративный</option><option value="Rubik Mono One">Плакатный</option><option value="Bad Script">Каллиграфический</option></select></div><div class="field"><label for="text-color">Цвет текста</label><input id="text-color" type="color" value="#008b9c" style="width:100%;height:43px;border:1px solid #becbd6;border-radius:7px;background:white"></div></div><p class="micro">Пунктир показывает область печати и не печатается. Пустая сторона останется без принта.</p><div class="control-btns"><button type="button" class="btn yellow" id="add-to-order">Добавить обе стороны к заказу ↗</button><button type="button" class="btn" id="save-preview">Скачать набросок обеих сторон</button><button type="button" class="btn light" id="save-print">Скачать принт выбранной стороны</button><button type="button" class="btn light" id="reset-design">Сбросить выбранную сторону</button></div><div id="save-status" class="status" role="status" aria-live="polite"></div></div></div><div class="notice"><b>Перед и спина сохраняются отдельно.</b> Можно сделать принт только спереди, только сзади или с обеих сторон. Перед печатью мы всё равно покажем и согласуем финальный макет.</div><div class="actions"><a href="#order" class="btn">Открыть заказ ↗</a><a href="#catalog" class="btn light">Вернуться в каталог</a></div></div></section>`}
 function initStudio(kind='tshirt'){

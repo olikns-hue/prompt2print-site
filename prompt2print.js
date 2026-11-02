@@ -985,6 +985,6 @@ function refresh(){pb.innerHTML='Сейчас интересует: <b>'+cur()+'
 function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity=0;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();return Promise.resolve()}
 o.onclick=function(){refresh();mo.hidden=false;ba.hidden=false};cl.onclick=ba.onclick=function(){mo.hidden=true;ba.hidden=true};
 tg.onclick=function(){copy(msg()).then(function(){st.textContent='Готовое сообщение скопировано. Вставь его в Telegram.'})};
-mx.onclick=function(){copy(msg()+'\\nТелефон Prompt2Print: +7 (917) 104-03-38');st.textContent='Сообщение и номер скопированы. Открываю MAX.';setTimeout(function(){window.open('https://max.ru/','_blank','noopener')},100)};
+mx.onclick=function(){window.open('https://max.ru/u/f9LHodD0cOKnfwBFn7FpipmQ5g2wIH0MRswe7L-skNqkGKOr0QJJ7qstczE','_blank','noopener');copy(msg()).then(function(){st.textContent='Сообщение скопировано. Вставь его в переписку в MAX.'}).catch(function(){st.textContent='Открываем профиль в MAX. Напиши нам, какой макет хочешь сделать.'})};
 window.addEventListener('hashchange',refresh);refresh();
 })();

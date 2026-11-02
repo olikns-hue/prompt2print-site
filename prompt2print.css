@@ -136,3 +136,6 @@ html, body, #allrecords, .t-records {
 #p2p .article-card-bottom b{color:var(--blue)}
 #p2p .article-back{margin-top:36px}
 @media(max-width:700px){#p2p .articles-grid{grid-template-columns:1fr}#p2p .article-card{min-height:245px;padding:24px}}
+
+/* Article comparison: readable cells and horizontal scroll on narrow screens. */
+.p2p-article table th,.p2p-article table td{padding:14px 16px;border-bottom:1px solid #dce3e5;vertical-align:top}.p2p-article table thead th{background:#edf4f3}.p2p-article table caption{text-align:left;padding:0 0 14px;font-weight:600}.p2p-article h3{margin-top:28px}

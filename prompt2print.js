@@ -979,12 +979,13 @@ var TELEGRAM='olikns';
 var names={tshirt:'футболку',readytshirt:'футболку с готовым принтом',sweatshirt:'толстовку',mug:'кружку',bottle:'бутылку 600 мл',coloring:'раскраску из фото',bag:'шоппер',socks:'носки',dtf:'DTF-термонаклейку'};
 function cur(){var m=(location.hash||'').match(/#(?:product|studio|order)\/([^/?#]+)/);return m&&names[m[1]]?names[m[1]]:'изделие с индивидуальным принтом'}
 function msg(){return'Здравствуйте! Я на сайте Prompt2Print и хочу заказать '+cur()+'. Не хочу собирать макет в конструкторе. Поможете сделать макет вместе?'}
-var o=document.getElementById('p2p-help-open'),mo=document.getElementById('p2p-help-modal'),ba=document.getElementById('p2p-help-backdrop'),cl=document.getElementById('p2p-help-close'),pb=document.getElementById('p2p-help-product'),tg=document.getElementById('p2p-help-tg'),mx=document.getElementById('p2p-help-max'),st=document.getElementById('p2p-help-status');
+var o=document.getElementById('p2p-help-open'),mo=document.getElementById('p2p-help-modal'),ba=document.getElementById('p2p-help-backdrop'),cl=document.getElementById('p2p-help-close'),pb=document.getElementById('p2p-help-product'),tg=document.getElementById('p2p-help-tg'),mx=document.getElementById('p2p-help-max'),vk=document.getElementById('p2p-help-vk'),st=document.getElementById('p2p-help-status');
 if(!o)return;
 function refresh(){pb.innerHTML='Сейчас интересует: <b>'+cur()+'</b>';tg.href='https://t.me/'+TELEGRAM}
 function copy(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity=0;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();return Promise.resolve()}
 o.onclick=function(){refresh();mo.hidden=false;ba.hidden=false};cl.onclick=ba.onclick=function(){mo.hidden=true;ba.hidden=true};
 tg.onclick=function(){copy(msg()).then(function(){st.textContent='Готовое сообщение скопировано. Вставь его в Telegram.'})};
 mx.onclick=function(){window.open('https://max.ru/u/f9LHodD0cOKnfwBFn7FpipmQ5g2wIH0MRswe7L-skNqkGKOr0QJJ7qstczE','_blank','noopener');copy(msg()).then(function(){st.textContent='Сообщение скопировано. Вставь его в переписку в MAX.'}).catch(function(){st.textContent='Открываем профиль в MAX. Напиши нам, какой макет хочешь сделать.'})};
+if(vk)vk.onclick=function(){copy(msg()).then(function(){st.textContent='Сообщение скопировано. Вставь его в сообщения сообщества VK.'}).catch(function(){st.textContent='Открываем сообщения сообщества VK. Напиши нам свою идею.'})};
 window.addEventListener('hashchange',refresh);refresh();
 })();
